@@ -24,3 +24,4 @@ yarn-error.log*
 *.sw*
 
 vue_wfl.iml
+src/.env.js

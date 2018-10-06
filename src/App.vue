@@ -27,23 +27,28 @@
         <v-toolbar
                 app
                 :clipped-left="clipped"
-                class="deep-purple darken-1 white--text"
+                class="grey lighten-3"
         >
-            <v-toolbar-side-icon @click.stop="drawer = !drawer" class="white--text"></v-toolbar-side-icon>
-            <v-btn icon @click.stop="miniVariant = !miniVariant" class="white--text">
+            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <v-btn icon @click.stop="miniVariant = !miniVariant">
                 <v-icon v-html="miniVariant ? 'fas fa-chevron-right' : 'fas fa-chevron-left'"></v-icon>
             </v-btn>
-            <v-btn icon @click.stop="clipped = !clipped" class="white--text">
+            <v-btn icon @click.stop="clipped = !clipped">
                 <v-icon>fas fa-globe</v-icon>
             </v-btn>
-            <v-btn icon @click.stop="fixed = !fixed" class="white--text">
+            <v-btn icon @click.stop="fixed = !fixed">
                 <v-icon>fas fa-minus</v-icon>
             </v-btn>
             <v-toolbar-title v-text="title"></v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-                <v-icon>fas fa-bars</v-icon>
-            </v-btn>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn flat icon href="http://localhost:3000/auth/google">
+                    <v-icon color="blue darken-2">fab fa-google-plus-g</v-icon>
+                </v-btn>
+                <!--<v-btn class="" flat icon @click.stop="rightDrawer = !rightDrawer">-->
+                <!--<v-icon>fas fa-bars</v-icon>-->
+                <!--</v-btn>-->
+            </v-toolbar-items>
         </v-toolbar>
         <v-content>
             <router-view/>
@@ -88,6 +93,9 @@
                 rightDrawer: false,
                 title: 'Vuetify.js'
             }
+        },
+        mounted() {
+            this.$store.dispatch('auth/getProfile')
         }
     }
 </script>
